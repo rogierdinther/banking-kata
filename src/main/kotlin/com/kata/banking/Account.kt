@@ -9,12 +9,14 @@ class Account {
         deposits.add(amount)
     }
 
-    fun printStatement() =
-        if (deposited) {
-            """|Date         Amount   Balance
-               |-                 -       500""".trimMargin("|")
+    fun printStatement(): String {
+        val balanceAsString = if (deposited) {
+            "500"
         } else {
-            """|Date         Amount   Balance
-               |-                 -         -""".trimMargin("|")
+            "  -"
         }
+
+        return """|Date         Amount   Balance
+                  |-                 -       $balanceAsString""".trimMargin("|")
+    }
 }
