@@ -16,7 +16,19 @@ class Account {
             "  -"
         }
 
-        return """|Date         Amount   Balance
-                  |-                 -       $balanceAsString""".trimMargin("|")
+        return printStatementRegels(balanceAsString)
     }
+
+    fun printStatementRegels(balanceAsString: String): String {
+        return printStatementHeader() +  printStatementRegel(balanceAsString)
+    }
+
+    fun printStatementHeader(): String {
+        return "Date         Amount   Balance"
+    }
+
+    fun printStatementRegel(balanceAsString: String): String {
+        return "\n" + "-                 -       $balanceAsString"
+    }
+
 }
