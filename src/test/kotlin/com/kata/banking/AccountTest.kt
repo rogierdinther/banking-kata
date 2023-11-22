@@ -11,22 +11,22 @@ Balance: 18-25
  */
 
 internal class AccountTest {
+    private val printer = FakePrinter()
+
     @Test
-    fun `prints empty statement when no transactions were made`() {
-        val account = Account()
-        assertEquals(
-            """|Date         Amount   Balance
-               |-                 -         -""".trimMargin("|"),
-            account.printStatement())
+    fun `calls print when user prints statements without any transactions`() {
+        val account = Account(printer)
+        account.printStatement()
+
+        assertEquals(1, printer.printCalled)
     }
 
     @Test
     fun `when account holder deposits, balance is value after transaction`() {
-        val printer = FakePrinter()
         val account = Account(printer)
         account.deposit(500)
 
-        val result = account.printStatement()
+        account.printStatement()
 
         assertEquals(500, printer.balanceLines[0])
     }

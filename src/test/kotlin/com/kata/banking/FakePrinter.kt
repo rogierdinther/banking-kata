@@ -1,10 +1,13 @@
 class FakePrinter : ForPrinting {
+    var printCalled: Int = 0
     val balanceLines: MutableList<Int> = mutableListOf()
 
-    override fun printStatementLine(date: String, amount: Int, balance: Int) {
-        balanceLines.add(
-            balance
-        )
-     }
+    override fun print(balance: Int?): String {
+        printCalled++
+        if (balance != null) {
+            balanceLines.add(balance)
+        }
 
+        return ""
+    }
 }
