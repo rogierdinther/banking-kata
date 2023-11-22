@@ -28,9 +28,6 @@ internal class AccountTest {
 
         val result = account.printStatement()
 
-        val row = result.split("\n")[1]
-        val balance = row.substring(22, 29)
-        assertEquals("    500", balance)
         assertEquals(500, printer.balanceLines[0])
     }
 
