@@ -1,5 +1,7 @@
 package com.kata.banking
 
+// Based on this kata: https://kata-log.rocks/banking-kata
+
 class Account {
     var deposited = false
     val deposits = mutableListOf<Int>()
