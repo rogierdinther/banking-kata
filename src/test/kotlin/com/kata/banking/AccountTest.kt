@@ -2,6 +2,7 @@ package com.kata.banking
 
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import FakePrinter
 
 /*
 Date: 0-10
@@ -21,7 +22,8 @@ internal class AccountTest {
 
     @Test
     fun `when account holder deposits, balance is value after transaction`() {
-        val account = Account()
+        val printer = FakePrinter()
+        val account = Account(printer)
         account.deposit(500)
 
         val result = account.printStatement()
@@ -29,6 +31,7 @@ internal class AccountTest {
         val row = result.split("\n")[1]
         val balance = row.substring(22, 29)
         assertEquals("    500", balance)
+        assertEquals(500, printer.balanceLines[0])
     }
 
 //    @Test
@@ -36,9 +39,9 @@ internal class AccountTest {
 //        val account = Account()
 //        account.deposit(500)
 //        account.deposit(300)
-//
+
 //        val result = account.printStatement()
-//
+
 //        val row = result.split("\n")[2]
 //        val balance = row.substring(22, 29)
 //        assertEquals("    800", balance)
