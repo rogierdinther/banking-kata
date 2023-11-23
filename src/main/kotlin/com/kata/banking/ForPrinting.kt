@@ -1,3 +1,3 @@
 interface ForPrinting {
-    fun print(balance: Int?): String
+    fun print(balances: List<Int>?): String
 }

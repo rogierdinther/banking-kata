@@ -2,10 +2,12 @@ class FakePrinter : ForPrinting {
     var printCalled: Int = 0
     val balanceLines: MutableList<Int> = mutableListOf()
 
-    override fun print(balance: Int?): String {
+    override fun print(balances: List<Int>?): String {
         printCalled++
-        if (balance != null) {
-            balanceLines.add(balance)
+        if (balances != null) {
+            for (balance in balances) {
+                balanceLines.add(balance)
+            }
         }
 
         return ""

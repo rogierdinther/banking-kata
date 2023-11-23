@@ -31,16 +31,14 @@ internal class AccountTest {
         assertEquals(500, printer.balanceLines[0])
     }
 
-//    @Test
-//    fun `when a deposit was previously done, the balance in the second deposit is the balance afterwards`() {
-//        val account = Account()
-//        account.deposit(500)
-//        account.deposit(300)
+   @Test
+   fun `when a deposit was previously done, the balance in the second deposit is the balance afterwards`() {
+       val account = Account(printer)
+       account.deposit(500)
+       account.deposit(300)
 
-//        val result = account.printStatement()
+       account.printStatement()
 
-//        val row = result.split("\n")[2]
-//        val balance = row.substring(22, 29)
-//        assertEquals("    800", balance)
-//    }
+       assertEquals(800, printer.balanceLines[1])
+   }
 }
