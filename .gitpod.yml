@@ -5,7 +5,8 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - init: ./gradlew test --continuous --info
+  - init: gradle build
+    command: gradle test --continuous --info
 vscode:
   extensions:
     - fwcd.kotlin

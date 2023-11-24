@@ -32,7 +32,7 @@ internal class AccountTest {
     }
 
    @Test
-   fun `when a deposit was previously done, the balance in the second deposit is the balance afterwards`() {
+   fun `when a deposit was previously done, the balance in the second printed line is the balance afterwards`() {
        val account = Account(printer)
        account.deposit(500)
        account.deposit(300)
@@ -40,5 +40,10 @@ internal class AccountTest {
        account.printStatement()
 
        assertEquals(800, printer.balanceLines[1])
+   }
+
+   @Test
+   fun `when a deposit and a subsequent withdrawal were done, the balance in the second printed line is the balance afterwards`() {
+        assertEquals(true, false)
    }
 }

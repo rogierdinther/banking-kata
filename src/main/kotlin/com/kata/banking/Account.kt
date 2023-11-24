@@ -24,8 +24,4 @@ class Account(val printer: ForPrinting) {
             printer.print(null)
         }
     }
-
-    //    fun printStatementRegels(balance: Int): String {
-    //        return printer.createHeader() + "\n" + printer.createStatementLine("", 0, balance)
-    //    }
 }
