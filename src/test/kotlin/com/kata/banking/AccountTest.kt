@@ -1,8 +1,8 @@
 package com.kata.banking
 
-import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 import FakePrinter
+import kotlin.test.assertEquals
+import org.junit.jupiter.api.Test
 
 /*
 Date: 0-10
@@ -31,19 +31,26 @@ internal class AccountTest {
         assertEquals(500, printer.balanceLines[0])
     }
 
-   @Test
-   fun `when a deposit was previously done, the balance in the second printed line is the balance afterwards`() {
-       val account = Account(printer)
-       account.deposit(500)
-       account.deposit(300)
+    @Test
+    fun `when a deposit was previously done, the balance in the second printed line is the balance afterwards`() {
+        val account = Account(printer)
+        account.deposit(500)
+        account.deposit(300)
 
-       account.printStatement()
+        account.printStatement()
 
-       assertEquals(800, printer.balanceLines[1])
-   }
+        assertEquals(800, printer.balanceLines[1])
+    }
 
-   @Test
-   fun `when a deposit and a subsequent withdrawal were done, the balance in the second printed line is the balance afterwards`() {
-        assertEquals(true, false)
-   }
+    @Test
+    fun `when two deposits were previously done, the balance in the third printed line is the balance afterwards`() {
+        val account = Account(printer)
+        account.deposit(500)
+        account.deposit(300)
+        account.deposit(200)
+
+        account.printStatement()
+
+        assertEquals(1000, printer.balanceLines[2])
+    }
 }

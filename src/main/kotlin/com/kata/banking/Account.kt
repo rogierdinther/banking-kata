@@ -1,27 +1,30 @@
 package com.kata.banking
 
 import ForPrinting
+import ForDepositingMoney
 
 // Based on this kata: https://kata-log.rocks/banking-kata
 
-class Account(val printer: ForPrinting) {
+class Account(val printer: ForPrinting) : ForDepositingMoney {
     var deposited = false
-    private val deposits = mutableListOf<Int>()
+    private val balances = mutableListOf<Int>()
 
-    fun deposit(amount: Int) {
+    override fun deposit(amount: Int) {
         deposited = true
-        deposits.add(amount)
+        val previousBalance =
+                if (balances.isEmpty()) {
+                    0
+                } else {
+                    balances[balances.size - 1]
+                }
+        balances.add(amount + previousBalance)
     }
 
     fun printStatement(): String {
         return if (deposited) {
-            if (deposits.size > 1) {
-                printer.print(listOf(500, 800))
-            } else {
-                printer.print(listOf(500))
-            }
+            printer.print(balances)
         } else {
-            printer.print(null)
+            printer.print(balances)
         }
     }
 }
