@@ -1,7 +1,10 @@
 package com.kata.banking
 
 import FakePrinter
+import kotlin.random.Random
 import kotlin.test.assertEquals
+import net.jqwik.api.*
+import net.jqwik.kotlin.api.JqwikIntRange
 import org.junit.jupiter.api.Test
 
 /*
@@ -40,6 +43,22 @@ internal class AccountTest {
         account.printStatement()
 
         assertEquals(800, printer.balanceLines[1])
+    }
+
+    @Property
+    fun `the second deposit equals the final balance minus the first deposit`(
+            @ForAll firstDeposit: Int,
+            @ForAll secondDeposit: Int
+    ) {
+        val localPrinter = FakePrinter()
+        val account = Account(localPrinter)
+
+        account.deposit(firstDeposit)
+        account.deposit(secondDeposit)
+
+        account.printStatement()
+
+        assertEquals(secondDeposit, localPrinter.balanceLines[1] - firstDeposit)
     }
 
     @Test

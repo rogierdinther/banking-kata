@@ -5,7 +5,7 @@ class FakePrinter : ForPrinting {
     override fun print(balances: List<Int>): String {
         printCalled++
         if (printCalled > 1) {
-            throw Exception()
+            throw Exception("Print was called more than once")
         }
 
         for (balance in balances) {
