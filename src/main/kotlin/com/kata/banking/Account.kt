@@ -7,6 +7,7 @@ import ForPrinting
 class Account(val printer: ForPrinting) {
     var deposited = false
     val deposits = mutableListOf<Int>()
+    val balanceList = mutableListOf<Int>()
 
 
     fun deposit(amount: Int) {
@@ -15,12 +16,14 @@ class Account(val printer: ForPrinting) {
     }
 
     fun printStatement(): String {
+        var subtotal: Int = 0
+        for (deposit in deposits) {
+            subtotal = subtotal + deposit
+            balanceList.add(subtotal)
+            
+        }
         return if (deposited) {
-            if (deposits.size > 1 ) {
-                printer.print(listOf(500,800))
-            } else {
-                printer.print(listOf(500))
-            }
+            printer.print(balanceList)
         } else {
             printer.print(null)
         }
