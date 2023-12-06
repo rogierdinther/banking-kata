@@ -1,1 +1,1 @@
-rootProject.name = "junit"
+rootProject.name = "banking-kata"
