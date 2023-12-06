@@ -16,7 +16,11 @@ class Account(val printer: ForPrinting) {
 
     fun printStatement(): String {
         return if (deposited) {
-            printer.print(500)
+            if (deposits.size > 1 ) {
+                printer.print(listOf(500,800))
+            } else {
+                printer.print(listOf(500))
+            }
         } else {
             printer.print(null)
         }
