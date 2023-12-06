@@ -21,6 +21,9 @@ internal class AccountTest {
         assertEquals(1, printer.printCalled)
     }
 
+    // @Test
+    // TODO: Zorg dat Account het resultaat van Printer returned
+
     @Test
     fun `when account holder deposits, balance is value after transaction`() {
         account.deposit(500)
@@ -35,7 +38,7 @@ internal class AccountTest {
         account.deposit(500)
         account.deposit(300)
 
-        val result = account.printStatement()
+        account.printStatement()
 
         assertEquals(800, printer.balanceLines[1])
     }

@@ -5,28 +5,16 @@ import ForPrinting
 // Based on this kata: https://kata-log.rocks/banking-kata
 
 class Account(val printer: ForPrinting) {
-    var deposited = false
-    val deposits = mutableListOf<Int>()
-    val balanceList = mutableListOf<Int>()
-
+    private val balanceList = mutableListOf<Int>()
 
     fun deposit(amount: Int) {
-        deposited = true
-        deposits.add(amount)
+        val currentBalance = balanceList.lastOrNull() ?: 0
+        balanceList.add(currentBalance + amount)
     }
 
     fun printStatement(): String {
-        var subtotal: Int = 0
-        for (deposit in deposits) {
-            subtotal = subtotal + deposit
-            balanceList.add(subtotal)
-            
-        }
-        return if (deposited) {
-            printer.print(balanceList)
-        } else {
-            printer.print(null)
-        }
+        printer.print(balanceList)
+        return ""
     }
 
 //    fun printStatementRegels(balance: Int): String {
