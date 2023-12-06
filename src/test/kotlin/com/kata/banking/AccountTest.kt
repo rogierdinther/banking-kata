@@ -39,4 +39,14 @@ internal class AccountTest {
 
         assertEquals(800, printer.balanceLines[1])
     }
+
+    @Test
+    fun `when two deposits are done, the balance in the first deposit is the balance before the second deposit`() {
+        account.deposit(100)
+        account.deposit(1100)
+
+        account.printStatement()
+
+        assertEquals(100, printer.balanceLines[0])
+    }
 }
