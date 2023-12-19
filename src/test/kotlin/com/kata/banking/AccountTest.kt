@@ -1,14 +1,10 @@
 package com.kata.banking
 
-import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
+import ForPrinting
 import MockPrinter
-
-/*
-Date: 0-10
-Amount: 11-17
-Balance: 18-25
- */
+import org.junit.jupiter.api.Test
+import org.mockito.Mockito
+import kotlin.test.assertEquals
 
 internal class AccountTest {
     private val printer = MockPrinter()
@@ -26,11 +22,15 @@ internal class AccountTest {
 
     @Test
     fun `when account holder deposits, balance is value after transaction`() {
-        account.deposit(500)
+        val printerMock: ForPrinting = Mockito.mock(ForPrinting::class.java)
+        Mockito.`when`(printerMock.print(Mockito.anyList())).thenReturn("Statement result")
 
-        account.printStatement()
+        val mockInjectedAccount = Account(printerMock)
 
-        assertEquals(500, printer.balanceLines[0])
+        mockInjectedAccount.deposit(500)
+        mockInjectedAccount.printStatement()
+
+        Mockito.verify(printerMock).print(listOf(500))
     }
 
     @Test
